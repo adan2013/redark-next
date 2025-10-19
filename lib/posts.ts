@@ -1,0 +1,294 @@
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import slugify from "slugify";
+
+export interface PostMetadata {
+  title: string;
+  slug: string;
+  date: string;
+  image: string;
+  categories: string[];
+  tags: string[];
+  relatedPosts: string[];
+}
+
+export interface Post extends PostMetadata {
+  content: string;
+  filePath: string;
+  year: string;
+}
+
+const postsDirectory = path.join(process.cwd(), "posts");
+
+// Get all MDX files recursively from the posts directory
+function getAllMdxFiles(dir: string): string[] {
+  const files: string[] = [];
+
+  const items = fs.readdirSync(dir);
+
+  for (const item of items) {
+    const fullPath = path.join(dir, item);
+    const stat = fs.statSync(fullPath);
+
+    if (stat.isDirectory()) {
+      files.push(...getAllMdxFiles(fullPath));
+    } else if (item.endsWith(".mdx")) {
+      files.push(fullPath);
+    }
+  }
+
+  return files;
+}
+
+// Helper function to resolve image paths from frontmatter
+export function resolveImagePath(
+  imagePath: string,
+  postFilePath: string
+): string {
+  // If it's already an absolute URL or starts with /, return as is
+  if (
+    imagePath.startsWith("http://") ||
+    imagePath.startsWith("https://") ||
+    imagePath.startsWith("/")
+  ) {
+    return imagePath;
+  }
+
+  // If it's a relative path (starts with ./ or ../)
+  if (imagePath.startsWith("./") || imagePath.startsWith("../")) {
+    // Extract the year directory from the post file path
+    // e.g., /path/to/posts/2021/098-post.mdx -> 2021
+    const match = postFilePath.match(/posts[\/\\](\d{4})[\/\\]/);
+
+    if (imagePath.startsWith("./")) {
+      // Same directory: "./images/102.jpg" -> "/posts/2021/images/102.jpg"
+      if (match) {
+        const year = match[1];
+        const relativeImagePath = imagePath.slice(2); // Remove "./"
+        return `/posts/${year}/${relativeImagePath}`;
+      }
+    } else if (imagePath.startsWith("../")) {
+      // Parent directory: "../2021/images/102.jpg" -> "/posts/2021/images/102.jpg"
+      const relativeImagePath = imagePath.slice(3); // Remove "../"
+      return `/posts/${relativeImagePath}`;
+    }
+  }
+
+  // Fallback: return as is
+  return imagePath;
+}
+
+// Read and parse a single MDX file
+export function getPostByFilePath(filePath: string): Post {
+  const fileContents = fs.readFileSync(filePath, "utf8");
+  const { data, content } = matter(fileContents);
+  const metadata = data as PostMetadata;
+
+  // Resolve the image path
+  const resolvedImage = metadata.image
+    ? resolveImagePath(metadata.image, filePath)
+    : metadata.image;
+
+  // Extract year from file path (e.g., posts/2021/098-post.mdx -> 2021)
+  const yearMatch = filePath.match(/posts[\/\\](\d{4})[\/\\]/);
+  const year = yearMatch
+    ? yearMatch[1]
+    : new Date(metadata.date).getFullYear().toString();
+
+  return {
+    ...metadata,
+    image: resolvedImage,
+    content,
+    filePath,
+    year,
+  };
+}
+
+// Get all posts sorted by date (newest first)
+export function getAllPosts(): Post[] {
+  const mdxFiles = getAllMdxFiles(postsDirectory);
+
+  const posts = mdxFiles.map((filePath) => getPostByFilePath(filePath));
+
+  return posts.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+}
+
+// Get a post by its slug
+export function getPostBySlug(slug: string): Post | null {
+  const posts = getAllPosts();
+  return posts.find((post) => post.slug === slug) || null;
+}
+
+// Get all post slugs for static generation
+export function getAllPostSlugs(): string[] {
+  const posts = getAllPosts();
+  return posts.map((post) => post.slug);
+}
+
+// Get posts by category
+export function getPostsByCategory(categorySlug: string): Post[] {
+  const posts = getAllPosts();
+  return posts.filter((post) => {
+    const postCategorySlugs = post.categories.map((category) =>
+      slugify(category, { lower: true })
+    );
+    return postCategorySlugs.includes(categorySlug);
+  });
+}
+
+// Get posts by tag
+export function getPostsByTag(tagSlug: string): Post[] {
+  const posts = getAllPosts();
+  return posts.filter((post) => {
+    const postTagSlugs = post.tags.map((tag) => slugify(tag, { lower: true }));
+    return postTagSlugs.includes(tagSlug);
+  });
+}
+
+// Get all unique categories
+export function getAllCategories(): string[] {
+  const posts = getAllPosts();
+  const categories = new Set<string>();
+
+  posts.forEach((post) => {
+    post.categories.forEach((category) => categories.add(category));
+  });
+
+  return Array.from(categories).sort();
+}
+
+// Get all unique tags
+export function getAllTags(): string[] {
+  const posts = getAllPosts();
+  const tags = new Set<string>();
+
+  posts.forEach((post) => {
+    post.tags.forEach((tag) => tags.add(tag));
+  });
+
+  return Array.from(tags).sort();
+}
+
+// Get paginated posts
+export function getPaginatedPosts(
+  page: number = 1,
+  limit: number = 10
+): {
+  posts: Post[];
+  totalPages: number;
+  currentPage: number;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+} {
+  const allPosts = getAllPosts();
+  const totalPages = Math.ceil(allPosts.length / limit);
+  const startIndex = (page - 1) * limit;
+  const endIndex = startIndex + limit;
+
+  const posts = allPosts.slice(startIndex, endIndex);
+
+  return {
+    posts,
+    totalPages,
+    currentPage: page,
+    hasNextPage: page < totalPages,
+    hasPreviousPage: page > 1,
+  };
+}
+
+// Get paginated posts by category
+export function getPaginatedPostsByCategory(
+  category: string,
+  page: number = 1,
+  limit: number = 10
+): {
+  posts: Post[];
+  totalPages: number;
+  currentPage: number;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+} {
+  const allPosts = getPostsByCategory(category);
+  const totalPages = Math.ceil(allPosts.length / limit);
+  const startIndex = (page - 1) * limit;
+  const endIndex = startIndex + limit;
+
+  const posts = allPosts.slice(startIndex, endIndex);
+
+  return {
+    posts,
+    totalPages,
+    currentPage: page,
+    hasNextPage: page < totalPages,
+    hasPreviousPage: page > 1,
+  };
+}
+
+// Get paginated posts by tag
+export function getPaginatedPostsByTag(
+  tag: string,
+  page: number = 1,
+  limit: number = 10
+): {
+  posts: Post[];
+  totalPages: number;
+  currentPage: number;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+} {
+  const allPosts = getPostsByTag(tag);
+  const totalPages = Math.ceil(allPosts.length / limit);
+  const startIndex = (page - 1) * limit;
+  const endIndex = startIndex + limit;
+
+  const posts = allPosts.slice(startIndex, endIndex);
+
+  return {
+    posts,
+    totalPages,
+    currentPage: page,
+    hasNextPage: page < totalPages,
+    hasPreviousPage: page > 1,
+  };
+}
+
+// Get related posts
+export function getRelatedPosts(currentPost: Post, limit: number = 4): Post[] {
+  const allPosts = getAllPosts();
+
+  // Filter out the current post
+  const otherPosts = allPosts.filter((post) => post.slug !== currentPost.slug);
+
+  // Score posts based on shared categories and tags
+  const scoredPosts = otherPosts.map((post) => {
+    let score = 0;
+
+    // Score by shared categories
+    const sharedCategories = post.categories.filter((cat) =>
+      currentPost.categories.includes(cat)
+    );
+    score += sharedCategories.length * 3;
+
+    // Score by shared tags
+    const sharedTags = post.tags.filter((tag) =>
+      currentPost.tags.includes(tag)
+    );
+    score += sharedTags.length * 2;
+
+    // Score by explicit related posts
+    if (currentPost.relatedPosts.includes(post.slug)) {
+      score += 5;
+    }
+
+    return { post, score };
+  });
+
+  // Sort by score and return top posts
+  return scoredPosts
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map((item) => item.post);
+}
