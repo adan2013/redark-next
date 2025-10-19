@@ -51,7 +51,6 @@ export const siteConfig: SiteConfig = {
     { text: "Podzespoły i urządzenia", link: "/podzespoly-i-urzadzenia" },
     { text: "Blog", link: "/blog" },
     { text: "Kontakt", link: "/kontakt" },
-    { text: "Szukaj", link: "/szukaj" },
   ],
   social: [
     {

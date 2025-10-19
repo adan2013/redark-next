@@ -134,17 +134,6 @@ export const commonPageMetadata = {
     ),
   },
 
-  search: {
-    title: generatePageTitle("Szukaj"),
-    description: generatePageDescription(
-      "Wyszukiwarka artykułów na Redark.pl. Znajdź interesujące Cię poradniki, recenzje i projekty DIY dotyczące elektroniki, składania PC i technologii."
-    ),
-    openGraph: generateOpenGraphData(
-      "Szukaj",
-      "Wyszukiwarka artykułów na Redark.pl. Znajdź interesujące Cię poradniki, recenzje i projekty DIY dotyczące elektroniki, składania PC i technologii."
-    ),
-  },
-
   blog: {
     title: generatePageTitle("Blog"),
     description: generatePageDescription(
