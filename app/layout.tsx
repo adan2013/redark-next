@@ -3,6 +3,7 @@ import "./globals.css";
 import "highlight.js/styles/github-dark.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { NewPosts, RandomPosts, Categories, Tags } from "@/components/widgets";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -22,9 +23,14 @@ export default function RootLayout({
       <body className={`antialiased bg-gray-100 text-black`}>
         <div className="bg-white w-full max-w-[1260px] min-h-screen mx-auto container-shadow">
           <Header />
-          <div className="flex flex-col md:flex-row gap-6">
+          <div className="flex flex-col md:flex-row gap-6 px-3">
             <main className="flex-1 px-4 py-6">{children}</main>
-            <aside className="w-auto md:w-60 lg:w-80">Sidebar</aside>
+            <aside className="w-auto md:w-80 px-4 py-6 space-y-6 flex flex-col gap-3">
+              <NewPosts />
+              <RandomPosts />
+              <Categories />
+              <Tags />
+            </aside>
           </div>
           <Footer />
         </div>

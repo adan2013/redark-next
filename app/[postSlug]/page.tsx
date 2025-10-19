@@ -8,6 +8,8 @@ import { Anton } from "next/font/google";
 import { cn, formatPolishDate } from "@/lib/utils";
 import slugify from "slugify";
 import { compileMDXContent, processImagePaths } from "@/lib/mdx";
+import Disqus from "@/components/Disqus";
+import { siteConfig } from "@/lib/config";
 
 const anton = Anton({
   weight: "400",
@@ -141,6 +143,13 @@ export default async function Post({ params }: PostPageProps) {
           </div>
         </div>
       )}
+
+      {/* Disqus Comments */}
+      <Disqus
+        postSlug={postSlug}
+        postTitle={post.title}
+        disqusUrl={siteConfig.disqusUrl}
+      />
     </article>
   );
 }

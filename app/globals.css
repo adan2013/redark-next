@@ -105,3 +105,12 @@ h4 {
 .container-shadow {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+/* Widget shadows */
+.widget-title-shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.widget-text-shadow {
+  text-shadow: 2px 2px 4px rgba(68, 68, 68, 1);
+}

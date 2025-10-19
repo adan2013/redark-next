@@ -37,7 +37,7 @@ export const MDXComponents = {
         alt={props.alt || ""}
         width={800}
         height={450}
-        className="rounded-lg my-6 mx-auto max-w-[500px] border-10 border-gray-300"
+        className="rounded-lg my-6 mx-auto max-w-[90%] border-10 border-gray-300"
         {...(props as any)}
       />
     </a>
