@@ -96,7 +96,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         <PostGrid posts={posts} />
       </div>
 
-      {/* Pagination */}
       <div className="mb-8">
         <Pagination
           currentPage={currentPage}

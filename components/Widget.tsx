@@ -1,4 +1,4 @@
-import React from "react";
+import { ReactNode } from "react";
 import { Anton } from "next/font/google";
 
 const anton = Anton({
@@ -9,10 +9,10 @@ const anton = Anton({
 
 interface WidgetProps {
   title?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-const Widget: React.FC<WidgetProps> = ({ title, children }) => {
+export default function Widget({ title, children }: WidgetProps) {
   return (
     <div className="p-0 bg-gray-50 border border-gray-400 mb-4">
       {title && (
@@ -25,6 +25,4 @@ const Widget: React.FC<WidgetProps> = ({ title, children }) => {
       <div className="py-2 px-1.5 text-gray-700">{children}</div>
     </div>
   );
-};
-
-export default Widget;
+}

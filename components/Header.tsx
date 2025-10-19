@@ -1,15 +1,12 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
 import Link from "./Link";
 import Navigation from "./Navigation";
 
 import RedarkLogo from "@/assets/logo-header.png";
 
-interface HeaderProps {}
-
-export default function Header({}: HeaderProps) {
+export default function Header() {
   return (
     <div className="sticky top-0 z-20 md:static bg-white">
       <header className="border-b-2 border-gray-500 h-[60px] md:border-b-0 md:h-auto">

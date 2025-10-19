@@ -1,6 +1,5 @@
 import { getPaginatedPostsByTag, getAllTags, getPostsByTag } from "@/lib/posts";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import { Metadata } from "next";
 import PostGrid from "@/components/PostGrid";
 import Pagination from "@/components/Pagination";
@@ -94,7 +93,6 @@ export default async function TagPage({ params }: TagPageProps) {
         <PostGrid posts={posts} />
       </div>
 
-      {/* Pagination */}
       <div className="mb-8">
         <Pagination
           currentPage={currentPage}

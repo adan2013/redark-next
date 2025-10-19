@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "next/link";
 import Widget from "@/components/Widget";
 import postConfig from "@/lib/post-config.json";

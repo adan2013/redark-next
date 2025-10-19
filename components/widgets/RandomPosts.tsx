@@ -1,4 +1,3 @@
-import React from "react";
 import Widget from "@/components/Widget";
 import CompactPostCard from "@/components/CompactPostCard";
 import { getAllPosts } from "@/lib/posts";

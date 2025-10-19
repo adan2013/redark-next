@@ -5,8 +5,6 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import remarkGfm from "remark-gfm";
 import remarkRawContent from "./remark-raw-content";
-
-// Import custom MDX components
 import { MDXComponents } from "@/components/mdx/MDXComponents";
 
 export interface MDXCompileResult {
@@ -14,12 +12,6 @@ export interface MDXCompileResult {
   frontmatter: Record<string, any>;
 }
 
-/**
- * Compiles MDX content with custom components and plugins
- * @param source - Raw MDX string content
- * @param components - Optional custom components to override defaults
- * @returns Compiled MDX content and frontmatter
- */
 export async function compileMDXContent(
   source: string,
   components?: Record<string, React.ComponentType<any>>
@@ -29,23 +21,13 @@ export async function compileMDXContent(
     options: {
       parseFrontmatter: true,
       mdxOptions: {
-        remarkPlugins: [
-          // Preserve raw string content for specific components
-          remarkRawContent,
-          // GitHub Flavored Markdown support (tables, strikethrough, etc.)
-          remarkGfm,
-        ],
-        rehypePlugins: [
-          // Syntax highlighting for code blocks
-          rehypeHighlight,
-          // Add IDs to headings
-          rehypeSlug,
-        ],
+        remarkPlugins: [remarkRawContent, remarkGfm],
+        rehypePlugins: [rehypeHighlight, rehypeSlug],
       },
     },
     components: {
       ...MDXComponents,
-      ...components, // Allow overriding default components
+      ...components,
     },
   });
 
@@ -55,12 +37,6 @@ export async function compileMDXContent(
   };
 }
 
-/**
- * Processes image and video paths in MDX content to handle relative paths
- * @param content - MDX content string
- * @param year - Post year for resolving relative image paths
- * @returns Processed MDX content with resolved image paths
- */
 export function processImagePaths(content: string, year: string): string {
   // Replace relative image and video paths with absolute paths
   // Example: ./images/102.jpg -> /posts/2021/images/102.jpg

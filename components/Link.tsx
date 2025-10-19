@@ -1,10 +1,10 @@
-import React from "react";
+import { ReactNode } from "react";
 import NextLink from "next/link";
 import { cn } from "@/lib/utils";
 
 interface LinkProps {
   href: string;
-  children: React.ReactNode;
+  children: ReactNode;
   variant?: "fill" | "bottom-line" | "none";
   className?: string;
   nextLinkClassName?: string;

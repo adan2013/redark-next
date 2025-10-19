@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "./Link";
 import { siteConfig } from "@/lib/config";
 

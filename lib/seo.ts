@@ -29,7 +29,6 @@ export const seoConfig: SEOConfig = {
   ],
 };
 
-// Helper functions for generating consistent metadata
 export function generatePageTitle(
   pageTitle: string,
   includeSiteName: boolean = true
@@ -57,7 +56,6 @@ export function generateOpenGraphData(
   };
 }
 
-// Predefined metadata for common pages
 export const commonPageMetadata = {
   home: {
     title: seoConfig.defaultTitle,

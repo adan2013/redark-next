@@ -60,17 +60,14 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
   return (
     <div>
-      {/* Header */}
       <header className="mb-8">
         <h1>Wszystkie artykuły</h1>
       </header>
       <div className="lg:col-span-3">
-        {/* Posts Grid */}
         <div className="mb-8">
           <PostGrid posts={posts} />
         </div>
 
-        {/* Pagination */}
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
