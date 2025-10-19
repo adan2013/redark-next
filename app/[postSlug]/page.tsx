@@ -78,7 +78,7 @@ export default async function Post({ params }: PostPageProps) {
       <header className="mb-3">
         <h1>{post.title}</h1>
 
-        <div className={"flex flex-wrap gap-4 text-sm text-gray-600 mb-6"}>
+        <div className={"flex flex-wrap gap-4 text-sm text-gray-600 mb-3"}>
           <time dateTime={post.date} className={cn(anton.className, "text-lg")}>
             {formatPolishDate(post.date)}
           </time>
@@ -110,7 +110,7 @@ export default async function Post({ params }: PostPageProps) {
       </header>
 
       {/* Post Content */}
-      <div className="prose prose-lg max-w-none">{mdxContent}</div>
+      <div>{mdxContent}</div>
 
       {/* Tags */}
       {post.tags.length > 0 && (

@@ -1,4 +1,10 @@
 import Script from "next/script";
+import { Metadata } from "next";
+import { commonPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  ...commonPageMetadata.search,
+};
 
 export default function Szukaj() {
   return (

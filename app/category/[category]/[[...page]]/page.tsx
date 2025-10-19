@@ -9,6 +9,7 @@ import PostGrid from "@/components/PostGrid";
 import Pagination from "@/components/Pagination";
 import slugify from "slugify";
 import postConfig from "@/lib/post-config.json";
+import { generatePageTitle, generatePageDescription } from "@/lib/seo";
 
 interface CategoryPageProps {
   params: Promise<{ category: string; page?: string[] }>;
@@ -48,14 +49,18 @@ export async function generateMetadata({
 
   if (pageNum === 1) {
     return {
-      title: `${categoryName} - Redark.pl`,
-      description: `Artykuły z kategorii ${categoryName} na Redark.pl`,
+      title: generatePageTitle(categoryName || "Kategoria"),
+      description: generatePageDescription(
+        `Artykuły z kategorii ${categoryName} na Redark.pl`
+      ),
     };
   }
 
   return {
-    title: `${categoryName} - Strona ${pageNum} - Redark.pl`,
-    description: `Artykuły z kategorii ${categoryName} - strona ${pageNum}`,
+    title: generatePageTitle(`${categoryName} - Strona ${pageNum}`),
+    description: generatePageDescription(
+      `Artykuły z kategorii ${categoryName} - strona ${pageNum}`
+    ),
   };
 }
 

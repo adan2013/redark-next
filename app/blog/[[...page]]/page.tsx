@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import PostGrid from "@/components/PostGrid";
 import Pagination from "@/components/Pagination";
+import { generatePageTitle, generatePageDescription } from "@/lib/seo";
 
 interface BlogPageProps {
   params: Promise<{ page?: string[] }>;
@@ -27,15 +28,18 @@ export async function generateMetadata({
 
   if (pageNum === 1) {
     return {
-      title: "Blog - Redark.pl",
-      description:
-        "Wszystkie artykuły na Redark.pl - poradniki, recenzje i projekty DIY",
+      title: generatePageTitle("Blog"),
+      description: generatePageDescription(
+        "Wszystkie artykuły na Redark.pl - poradniki, recenzje i projekty DIY"
+      ),
     };
   }
 
   return {
-    title: `Blog - Strona ${pageNum} - Redark.pl`,
-    description: `Wszystkie artykuły na Redark.pl - strona ${pageNum}`,
+    title: generatePageTitle(`Blog - Strona ${pageNum}`),
+    description: generatePageDescription(
+      `Wszystkie artykuły na Redark.pl - strona ${pageNum}`
+    ),
   };
 }
 

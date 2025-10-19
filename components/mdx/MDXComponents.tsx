@@ -37,13 +37,15 @@ export const MDXComponents = {
         alt={props.alt || ""}
         width={800}
         height={450}
-        className="rounded-lg my-6 mx-auto max-w-[90%] border-10 border-gray-300"
+        className="rounded-lg my-6 mx-auto max-w-[500px] border-10 border-gray-300"
         {...(props as any)}
       />
     </a>
   ),
   a: (props: ComponentPropsWithoutRef<"a">) => (
-    <Link href={props.href || ""}>{props.children}</Link>
+    <Link href={props.href || ""} className="leading-normal">
+      {props.children}
+    </Link>
   ),
   h1: (props: ComponentPropsWithoutRef<"h1">) => <h1 {...props} />,
   h2: (props: ComponentPropsWithoutRef<"h2">) => <h2 {...props} />,
@@ -52,7 +54,7 @@ export const MDXComponents = {
   h5: (props: ComponentPropsWithoutRef<"h5">) => <h5 {...props} />,
   h6: (props: ComponentPropsWithoutRef<"h6">) => <h6 {...props} />,
   p: (props: ComponentPropsWithoutRef<"p">) => (
-    <div className="my-4 leading-7" {...props} />
+    <div className="my-4 leading-relaxed" {...props} />
   ),
   ul: (props: ComponentPropsWithoutRef<"ul">) => (
     <ul className="list-disc list-inside my-4 space-y-2" {...props} />

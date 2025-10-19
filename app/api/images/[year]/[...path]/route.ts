@@ -29,6 +29,9 @@ export async function GET(
       ".gif": "image/gif",
       ".webp": "image/webp",
       ".svg": "image/svg+xml",
+      ".mp4": "video/mp4",
+      ".webm": "video/webm",
+      ".ogg": "video/ogg",
     };
 
     const contentType = contentTypeMap[ext] || "application/octet-stream";

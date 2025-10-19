@@ -1,4 +1,10 @@
 import Link from "@/components/Link";
+import { Metadata } from "next";
+import { commonPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  ...commonPageMetadata.series,
+};
 
 export default function Serie() {
   return (

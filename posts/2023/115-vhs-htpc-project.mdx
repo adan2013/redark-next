@@ -5,7 +5,8 @@ date: "2023-08-03"
 image: "./images/115.jpg"
 categories: ["DIY"]
 tags: ["arduino", "htpc", "laptop", "streaming"]
-relatedPosts: ["diy-arduino-dashboard-ets-ats", "twitch-tv-bttv-htpc-dell-wyse-5070"]
+relatedPosts:
+  ["diy-arduino-dashboard-ets-ats", "twitch-tv-bttv-htpc-dell-wyse-5070"]
 ---
 
 Pod koniec 2021 roku pokazywałem Wam [mój sposób na komfortowe korzystanie z Twitcha na telewizorze](/twitch-tv-bttv-htpc-dell-wyse-5070). Wtedy do tego celu używałem poleasingowego terminala Dell Wyse 5070. Sprawował się on całkiem nieźle i był całkowicie bezgłośny. Niestety brak akceleracji sprzętowej na Linuxie sprawiał, że rozdzielczość 720p wyciskała z niego siódme poty, a instalacja Windowsa ze wsparciem owej akceleracji prędzej czy później kończyła się awariami połączonymi z wyciekami pamięci operacyjnej. Minusem było również ciągłe podchodzenie do jednostki, aby móc ją włączyć.
@@ -16,7 +17,7 @@ Tak oto narodził się projekt VHS HTPC. Dawcą podzespołów miał być stary l
 
 Za nim przejdę do omówienia budowy i działania urządzenia, krótka prezentacja jego możliwości w formie krótkiego wideo:
 
-<YouTube id='vgGN3KrSJ-c' title='VHS HTPC Project'></YouTube>
+<YouTube id="vgGN3KrSJ-c" title="VHS HTPC Project"></YouTube>
 
 ## Przygotowania do projektu
 
@@ -26,7 +27,7 @@ Pracę nad projektem rozpocząłem od demontażu magnetowidu, aby przekonać si�
 
 Urządzenie pochodzi z przełomu lat 80./90. ubiegłego wieku i muszę przyznać, że zaskoczyło mnie poziomem skomplikowania. Oczywiście widać tutaj małozaawansowaną miniaturyzację elektroniki oraz brak wielowarstwowych płytek drukowanych, ale sam projekt urządzenia jest fascynujący. Najbardziej zaskoczyła mnie płyta główna, która została zlutowana z wielu płytek i tworzy półotwarty prostopadłościan, aby zmieścić się w obudowie 🤯. Pod tym względem dzisiejsze urządzenia są nudne - wewnątrz widzimy tylko jedną malutką płytkę, na której niewiele da się zobaczyć gołym okiem.
 
-![Panasonic NV-J35HQ VHS player](/images/panasonic_vhs_htpc_redark.jpg)
+![Panasonic NV-J35HQ VHS player](./images/panasonic_vhs_htpc_redark.jpg)
 
 Po pierwszym przyjrzeniu się VHS-owi uznałem, że po kilku przeróbkach oraz wycięciu przeszkadzających wewnętrznych plastikowych ścianek nada się on do mojego projektu. Zmartwiły mnie jedynie uszkodzenia widoczne na frontowym panelu. Choć byłem ich świadomy, widząc je odkąd sięgam swoją pamięcią, to okazały się bardziej rozległe, niż to było widoczne z zewnątrz. Ewidentnie urządzenie zaliczyło kiedyś upadek i oprócz zdartych kantów oraz zarysowanego szkiełka znalazłem też kilka połamanych plastików. Cały front okazał się trzymać na słowo honoru, ponieważ 2 z 4 bocznych zaczepów było kompletnie urwanych.
 
@@ -47,8 +48,8 @@ Pomysły na rozwiązanie problemu z dyskiem były dwa. Pierwszy polegał na znal
 Płyta główna musiała zatem zostać umieszczona równolegle do frontu. Okazało się, że przy takim ułożeniu pozwoli mi to podłączyć nawet oryginalne gniazda SATA laptopa. Musiałem jedynie bardzo dokładnie wykonać otwory montażowe, ponieważ luzu na szerokości obudowy zostało mi może z 2-3 milimetry 😂. Choć taki wariant prac rozwiązywał mój problem z dyskami, to oczywiście pojawiły się inne problemy. Porty musiały zostać wyprowadzone z boku urządzenia, a także w samej obudowie zostało już bardzo niewiele wolnego miejsca, które mógłbym przeznaczyć na resztę osprzętu. Musiałem mocno przeanalizować i przekształcić swoje pomysły, aby zaadaptować je do nowej sytuacji.
 
 <Gallery>
-![vhs player with laptop motherboard](images/IMG_20230115_125331_redark.jpg)
-![dremel 3000](images/IMG_20230128_131614_redark.jpg)
+  ![vhs player with laptop motherboard](images/IMG_20230115_125331_redark.jpg)
+  ![dremel 3000](images/IMG_20230128_131614_redark.jpg)
 </Gallery>
 
 Gdy projekt urządzenia się wyklarował, przeszedłem do ostatecznych przymiarek i zaznaczania miejsc w obudowie, które muszę zmodyfikować. Tutaj po raz pierwszy użyłem mojej nowej zabawki, czyli mini szlifierki Dremel 3000. Jej pomoc była nieoceniona i raz-dwa pozbyłem się blokujących mnie plastikowych wzmocnień. W późniejszym etapie pracy, gdy płyta była już zamontowana, wyciąłem również prawą ściankę pod panel portów oraz otwór w metalowej osłonie obudowy.
@@ -58,8 +59,8 @@ Gdy projekt urządzenia się wyklarował, przeszedłem do ostatecznych przymiare
 Budowa urządzenia składa się z wielu różnych elementów ułożonych jedne nad drugimi. Aby ułatwić opisanie Wam budowy oraz działania urządzenia postanowiłem, że będę go omawiał wraz ze zdjęciami wykonanymi podczas ostatecznego montażu podzespołów. Oczywiście w trakcie projektowania i wykonywania tego HTPC demontowałem i montowałem podzespoły wielokrotnie, aby dobrze spasować wszystkie elementy oraz zwalidować moje pomysły. To, co zobaczycie poniżej, jest owocem całej mojej pracy nad tym projektem i jest jego ostateczną wersją.
 
 <Gallery>
-![vhs htpc parts](images/IMG_20230430_162528_redark.jpg)
-![assembling vhs player](images/IMG_20230501_112233_redark.jpg)
+  ![vhs htpc parts](images/IMG_20230430_162528_redark.jpg) ![assembling vhs
+  player](images/IMG_20230501_112233_redark.jpg)
 </Gallery>
 
 ### Zaślepki oraz rozdzielacz zasilania
@@ -67,7 +68,9 @@ Budowa urządzenia składa się z wielu różnych elementów ułożonych jedne n
 Zaczynamy od pustej obudowy. Na pierwszy ogień muszą pójść zaślepki oryginalnych dwóch otworów urządzenia. Ta po prawej wykonana została z wieczka po pudełku po lodach. Plastik, z którego są wykonane, jest cienki, wytrzymały i jednocześnie łatwy w obróbce. Wykonałem w nich kratki wentylacyjne - dolny jest wlotem powietrza dla procesora, a górny odprowadza ciepło nagromadzone nad płytą główną. Zaślepka otworu po lewej to również wieczko po pudełku lodów, ale wzmocnione od tyłu kawałkiem sklejki. Pozwoliło mi to na bardzo solidne mocowanie pod kwadratowe gniazdo Ethernet oraz gumowy przepust dla kabla zasilającego.
 
 <InfoBlock>
-Główny kabel zasilający początkowo miał być odłączalny, ale brak miejsca w tym miejscu oraz niewielki oryginalny otwór obudowy nie pozwolił mi na montaż dużego standardowego gniazda zasilania.
+  Główny kabel zasilający początkowo miał być odłączalny, ale brak miejsca w tym
+  miejscu oraz niewielki oryginalny otwór obudowy nie pozwolił mi na montaż
+  dużego standardowego gniazda zasilania.
 </InfoBlock>
 
 ![vhs power source phone usb charger](images/IMG_20230501_114833_redark.jpg)
@@ -101,15 +104,15 @@ Układ sterowania wyświetlaczem składa się z dwóch płytek uniwersalnych zam
 Już prawie wszystkie elementy znajdują się w obudowie, więc pora zająć się okablowaniem. Na początek największa 8-pinowa wiązka sterownika wyświetlacza. Łączy ona obydwie płytki PCB i przechodzi przez okrągły otwór w grodzi obudowy. Następnie przez ten sam otwór przełożyłem drugą wiązkę, której dwa przewody są od początku przylutowane do płyty głównej laptopa. Wiązka ta zakończona jest 5-pinową wtyczką, która wchodzi do płytki uniwersalnej po lewej stronie obudowy. Pozostałe dwa przewody wiązki zakończone są czarnym małym gniazdem, którym zajmiemy się w tym momencie. Musimy doprowadzić do tego miejsca zasilanie z portu USB laptopa przy pomocy specjalnego kabla (sondy), który ma w sobie wlutowany rezystor. USB podłączone jest do zamontowanych wcześniej portów laptopa zamontowanych do góry nogami z tyłu obudowy. Drugi port USB posłuży do podłączenia kontrolera ESP poprzez krótki kabel microUSB, który odpowie za przesyłanie komend z pilota do komputera. Obok kontrolera podłączona została również mała 2-pinowa wtyczka, która doprowadza stałe zasilanie z ładowarki USB znajdującej się pod płytą główną.
 
 <Gallery>
-![wiring the vhs components](images/IMG_20230501_125229_redark.jpg)
-![wiring esp control unit](images/IMG_20230501_125501_redark.jpg)
+  ![wiring the vhs components](images/IMG_20230501_125229_redark.jpg) ![wiring
+  esp control unit](images/IMG_20230501_125501_redark.jpg)
 </Gallery>
 
 Teraz pozostało zamontować z tyłu gniazdo Ethernet i podłączyć jego drugi koniec do oryginalnego gniazda internetu znajdującego się po prawej stronie płyty głównej. Zapewne zapytacie teraz, dlaczego takie coś zrobiłem i nie podłączyłem Internetu bezpośrednio do laptopa lub nie użyłem sieci Wi-Fi? Po pierwsze nie chciałem polegać na bezprzewodowej łączności, ponieważ jest ona zawodna, a oryginalna karta laptopa działająca na 2.4 GHz byłaby bardzo problematyczna. Kabel natomiast nie jest podłączony bezpośrednio, ponieważ nie chciałem psuć wyglądu urządzenia kablem wystającym z boku jednostki. Pozostałe porty są ulokowane głęboko i nie są widoczne z kanapy. Gniazdo Ethernetu znajduje się jednak zbyt blisko frontu i postanowiłem użyć przedłużacza, aby przenieść je w inne miejsce i nie ingerować w budowę płyty głównej np. poprzez przylutowanie innego gniazda RJ45. Przedłużacz zakupiłem przez Internet, a następnie oryginalną dużą i ekranowaną wtyczkę zastąpiłem swoją nieekranowaną, którą wcześniej maksymalnie skróciłem przy użyciu piłki do metalu. Działa? Działa 😀.
 
 <Gallery>
-![mounting ethernet socket](images/IMG_20230501_130514_redark.jpg)
-![mounting front panel with power button](images/IMG_20230501_125800_redark.jpg)
+  ![mounting ethernet socket](images/IMG_20230501_130514_redark.jpg) ![mounting
+  front panel with power button](images/IMG_20230501_125800_redark.jpg)
 </Gallery>
 
 ### Front urządzenia
@@ -125,17 +128,20 @@ Czas omówić działanie VHS-a zarówno od strony użytkowej, jak i technicznej.
 ### Wyświetlacz segmentowy
 
 Zadaniem wyświetlacza frontowego jest wyświetlanie godziny oraz informowanie o aktualnym stanie laptopa. Wyświetla on komunikat “On” lub “Off” w momencie jego włączenia i wyłączenia, a także jest w stanie pokazać aktualną temperaturę procesora. Ekran może działać w trzech różnych trybach:
+
 - **TIME** - wyświetla zawsze aktualną godzinę,
 - **TEMP** - wyświetla godzinę, gdy laptop jest wyłączony i temperaturę procesora, gdy laptop jest włączony,
 - **SOFF** - wyświetlacz jest wygaszany w momencie bezczynności i wyświetla tylko komunikaty np. o włączeniu lub wyłączeniu laptopa.
 
 <InfoBlock>
-Odebranie sygnału z pilota jest sygnalizowane poprzez mruganie ostatniej kropki dziesiętnej na wyświetlaczu.
+  Odebranie sygnału z pilota jest sygnalizowane poprzez mruganie ostatniej
+  kropki dziesiętnej na wyświetlaczu.
 </InfoBlock>
 
 ### Pilot na podczerwień
 
 Do projektu wykorzystałem chiński zamiennik pilota do soundbarów marki Sony. Był on idealny do mojego projektu, ponieważ występował w wielu wariantach, a także nie posiada etykiet nadrukowanych bezpośrednio na przyciski. Idąc od góry do dołu, przyciski umożliwiają:
+
 - MENU - zmiana trybu pracy wyświetlacza TIME/TEMP/SOFF. Dodatkowa pozycja SETC umożliwia zmianę czasu zegara.
 - POWER - służy do zdalnego włączania lub wyłączania komputera.
 - PROFILE - wywołuje menu profili skrótów i makr.
@@ -160,7 +166,8 @@ Aby zapewnić integrację jednostki sterującej z systemem operacyjnym, napisał
 Głównym zadaniem aplikacji jest symulowanie skrótów klawiszowych po wciśnięciu konkretnych przycisków na pilocie. Dla przykładu, gdy użytkownik użyje przycisku **PASTE**, kontroler wysyła ID akcji do aplikacji, a ona na podstawie otrzymanego kodu, korzysta wirtualnej klawiatury do zasymulowania określonego skrótu - w tym przypadku **Ctrl + V**. Oprócz tego, aplikacja posiada trzy okna, które mogą zostać wywołane przy pomocy przycisków **PROFILE** oraz **APPS**. Okno profili pozwala wybrać predefiniowaną listę makr klawiszowych dostępnych pod przyciskami **S1-S6** na pilocie. Dzięki temu mogę ustawić sobie przydatne skróty do każdej sytuacji i do każdego streamera osobno. Gdy okno profili jest otwarte, przyciski głośności służą do poruszania się góra/dół po menu, a przycisk **ENTER** potwierdza zmianę profilu.
 
 <InfoBlock>
-U dołu okna profili widoczna jest aktualna temperatura procesora wraz z wartościami MIN/MAX zmierzonymi od momentu uruchomienia aplikacji.
+  U dołu okna profili widoczna jest aktualna temperatura procesora wraz z
+  wartościami MIN/MAX zmierzonymi od momentu uruchomienia aplikacji.
 </InfoBlock>
 
 Drugim oknem jest APPS. Zawiera on listę predefiniowanych skrótów do stron internetowych lub aplikacji. To dzięki nim jestem w stanie uruchomić konkretny stream oraz wybrać profil (konto Google) w przeglądarce bez dotykania tradycyjnej klawiatury. Poruszanie się po menu aplikacji również odbywa się poprzez użycie przycisków głośności oraz ENTER-a. Wciśnięcie przycisku **PROFILE**, gdy mamy otwarte menu aplikacji, powoduje przejście do specjalnego okna ustawień. To tutaj użytkownik może zdefiniować wszystkie makra oraz skróty. Wszystkie omawiane tutaj okna możecie zobaczyć na prezentacji wideo na początku artykułu.
@@ -192,6 +199,7 @@ Poniżej udostępniam pełny schemat elektryczny całego układu sterowania oraz
 ![vhs htpc circuit schema](images/vhs_htpc_circuit.jpg)
 
 Wiązka sterownika wyświetlacza:
+
 - VCC - zasilanie układu,
 - NC - pin wolny,
 - SHIFT - sygnał przeniesienia bitu,
@@ -202,6 +210,7 @@ Wiązka sterownika wyświetlacza:
 - IR - sygnał czujnika podczerwieni.
 
 Wiązka sterowania laptopem:
+
 - LED_A - plus sygnału uruchomienia laptopa (anoda optoizolatora),
 - LED_C - minus sygnału uruchomienia laptopa (katoda optoizolatora),
 - NC - pin wolny,
@@ -209,6 +218,7 @@ Wiązka sterowania laptopem:
 - PWR_SIG - sygnał przycisku zasilania laptopa (kolektor optoizolatora).
 
 Wiązka panelu frontowego:
+
 - BTN - masa przycisku zasilania,
 - VCC - wspólny plus przycisku i diody,
 - LED - katoda diody zasilania.
@@ -221,6 +231,8 @@ Oprócz tego podaję układ wyprowadzeń wyświetlacza oraz schemat budowy rejes
 
 To już koniec artykułu. Pozostało mi jedynie podać przybliżony kosztorys projektu, choć określenie wartości urządzenia nie jest łatwe, ponieważ dwa największe podzespoły pochodziły z odzysku. Koszt pozostałych elementów spokojnie zamknął się w granicy 200 złotych. Jak ja oceniam wykonanie projektu? Pomimo wielu problemów po drodze uważam, że udało mi się dowieźć bardzo dobrze działające urządzenia. Ma on swoje mankamenty, jak słaba widoczna dioda zasilania (którą może kiedyś wymienię na mocniejszą), czy tendencję do grzania się (temperatura waha się między 60 a 70 stopni podczas streamów w 1080p). Jednak reszta projektu poszła zgodnie z moim planem. Jednostka sterująca działa bezbłędnie, a integracja z systemem operacyjnym sprawia, że sterowanie pilotem jest bardzo wygodne. Cieszę się też, że mogłem dać drugie życie laptopowi oraz VHS-owi z mojego dzieciństwa. Będzie teraz godnie stał w moim salonie. A Wy jak oceniacie ten projekt? Super pomysł, czy niepotrzebne przekombinowanie? Dajcie znać w komentarzach. 🙂
 
-<ActionButton to='https://github.com/adan2013/vhs-htpc'>Kod źródłowy - GitHub</ActionButton>
+<ActionButton to="https://github.com/adan2013/vhs-htpc">
+  Kod źródłowy - GitHub
+</ActionButton>
 
 ![project parts pricing](images/kosztorys_vhs_htpc.jpg)

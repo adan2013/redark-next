@@ -23,13 +23,16 @@ const BadIcon = () => (
 
 export function BadList({ children }: BadListProps) {
   const childrenString = String(children);
-  const items = childrenString.split("- ");
-  items.shift(); // Remove first empty element
+  const items = childrenString
+    .split("\n")
+    .map((line) => line.trim())
+    .filter((line) => line.startsWith("- "))
+    .map((line) => line.substring(2).trim());
 
   return (
     <ul className="list-none py-[5px] px-0 pl-5 m-0">
       {items.map((item, i) => (
-        <li key={i} className="mb-1.5">
+        <li key={i} className="list-none mb-1.5">
           <BadIcon />
           {item}
         </li>

@@ -29,7 +29,11 @@ export function GifViewer({ children }: GifViewerProps) {
         rel="noopener noreferrer"
         style={{ padding: "0", marginBottom: "-8px" }}
       >
-        <img src={url} alt={computedData.alt} style={{ width: "100%" }} />
+        <img
+          src={url}
+          alt={computedData.alt}
+          className="w-full my-2 max-w-[500px] mx-auto border-10 border-gray-300 rounded-lg"
+        />
       </a>
     </div>
   );

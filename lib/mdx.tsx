@@ -56,23 +56,37 @@ export async function compileMDXContent(
 }
 
 /**
- * Processes image paths in MDX content to handle relative paths
+ * Processes image and video paths in MDX content to handle relative paths
  * @param content - MDX content string
  * @param year - Post year for resolving relative image paths
  * @returns Processed MDX content with resolved image paths
  */
 export function processImagePaths(content: string, year: string): string {
-  // Replace relative image paths with absolute paths
+  // Replace relative image and video paths with absolute paths
   // Example: ./images/102.jpg -> /posts/2021/images/102.jpg
+  // Example: ../2020/images/photo.jpg -> /posts/2020/images/photo.jpg
+  // Example: file='images/video.mp4' -> file='posts/2019/images/video.mp4'
   return (
     content
+      // Handle cross-year references (../YEAR/images/)
+      .replace(
+        /!\[([^\]]*)\]\(\.\.\/(\d{4})\/images\//g,
+        `![$1](/posts/$2/images/`
+      )
+      .replace(/src="\.\.\/(\d{4})\/images\//g, `src="/posts/$1/images/`)
+      .replace(/src='\.\.\/(\d{4})\/images\//g, `src='/posts/$1/images/`)
+      .replace(/file="\.\.\/(\d{4})\/images\//g, `file="/posts/$1/images/`)
+      .replace(/file='\.\.\/(\d{4})\/images\//g, `file='/posts/$1/images/`)
+      // Handle current year references (./images/ or images/)
       .replace(/!\[([^\]]*)\]\(\.\/images\//g, `![$1](/posts/${year}/images/`)
       .replace(/!\[([^\]]*)\]\(images\//g, `![$1](/posts/${year}/images/`)
-      // Also handle JSX Image components
       .replace(/src="\.\/images\//g, `src="/posts/${year}/images/`)
       .replace(/src="images\//g, `src="/posts/${year}/images/`)
-      // Handle img tags
       .replace(/src='\.\/images\//g, `src='/posts/${year}/images/`)
       .replace(/src='images\//g, `src='/posts/${year}/images/`)
+      .replace(/file="\.\/images\//g, `file="/posts/${year}/images/`)
+      .replace(/file="images\//g, `file="/posts/${year}/images/`)
+      .replace(/file='\.\/images\//g, `file='/posts/${year}/images/`)
+      .replace(/file='images\//g, `file='/posts/${year}/images/`)
   );
 }

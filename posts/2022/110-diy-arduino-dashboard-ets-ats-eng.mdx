@@ -12,21 +12,22 @@ This article was created based on [my original article that had been written in 
 
 The project was made after hours, and it took me about 18 months to complete. Today I have the pleasure to show you the final device and English version of this article. Below this paragraph, you can find a video on YouTube which presents all main features of this project. Maybe the video is not as pretty as I wished it to be, but these are all my skills in DaVinci Resolve application 😅. I hope you will like it:
 
-
 <YouTube id="KW6sZINNi9Y" title="DIY Arduino Dashboard" />
 
-<InfoBlock>This video includes English subtitles - please enable it in YouTube options.</InfoBlock>
+<InfoBlock>
+  This video includes English subtitles - please enable it in YouTube options.
+</InfoBlock>
 
 ## Project presentation
 
 <Gallery>
-![diy arduino dashboard](2021/images/IMG_20210618_225118_redark.jpg)
-![diy arduino dashboard](2021/images/IMG_20210618_224241_redark.jpg)
+  ![diy arduino dashboard](../2021/images/IMG_20210618_225118_redark.jpg) ![diy
+  arduino dashboard](../2021/images/IMG_20210618_224241_redark.jpg)
 </Gallery>
 
 Outside look. The gauge cluster was closed in a rectangular wooden case cut by a laser based on my project. On the left side there is a USB port (type B) which allows connecting the device with a computer. The back of this case contains two elements. First is a knob of the potentiometer which allows you to adjust backlight brightness. The second element is a 12V socket. Supplying it is only required to use red-white backlight of this gauge cluster. Other features (LCD screen, warning lights, gauge motors) can work without this voltage. The front of the case contains four analog gauges: a big speedometer and tachometer, and also small fuel and air pressure gauges. In the middle, between two big gauges, there is a small 2.4-inch LCD screen. The case can be laid flat on the desk or can be placed on a special stand that should make it easier to use them while playing.
 
-<AdSense/>
+<AdSense />
 
 ### Warning lights
 
@@ -67,9 +68,14 @@ The top section of the screen displays current time, cruise control speed value,
 
 Before I start explaining things inside this box and principles of operation, I would like to show you a video with compilation of clips from my example road in Euro Truck Simulator 2:
 
-<YouTube id="NMoZSP29ytk" title="DIY Arduino Dashboard Euro Truck Simulator 2" />
+<YouTube
+  id="NMoZSP29ytk"
+  title="DIY Arduino Dashboard Euro Truck Simulator 2"
+/>
 
-<InfoBlock>This video includes English subtitles - please enable it in YouTube options.</InfoBlock>
+<InfoBlock>
+  This video includes English subtitles - please enable it in YouTube options.
+</InfoBlock>
 
 ## How does this work?
 
@@ -83,7 +89,9 @@ The SCS Software DLL file only delivers raw data, which is not useful for my pro
 
 ![scs software telemetry interpreter c#](../2021/images/scs_software_telemetry_interpreter.jpg)
 
-<ImageDescription>Telemetry interpreter was written in C# language</ImageDescription>
+<ImageDescription>
+  Telemetry interpreter was written in C# language
+</ImageDescription>
 
 The UI of this app contains all buttons that allow you to control all features included in my device. In the top left corner, there is a matrix of buttons. It represents 16 warning lights and a 4-zone gauge backlight. Section “program” allows you to choose one of four predefined modes:
 
@@ -92,7 +100,7 @@ The UI of this app contains all buttons that allow you to control all features i
 - **Test** - plays animation which tests all components of the project,
 - **Telemetry** - primary working mode with game telemetry.
 
-<AdSense/>
+<AdSense />
 
 Section “Screen and Sound” contains all buttons to control on-board computer LCD and warning sounds. The right side of the interface contains four horizontal sliders which allow you to control the position of four gauge motors. “HOME RESET” button lets you reset the initial position of all gauges. “Options” section contains 7 buttons representing all available settings. The option is enabled, if the button is lit up. Here’s the meaning of all options:
 
@@ -120,34 +128,38 @@ The task of this telemetry app was to receive and analyze telemetry data from ou
 
 Before I start to explain this process, I want to say that the concept of this device has been developed for several months. I started from simple gauges with servomechanism, some 5-mm LEDs and segment LCD. After that, I was thinking about using normal, non modified car gauges, but I didn’t want to have a non-matching tachometer RPM scale and warning lights symbols. The next idea was to use car gauges, but take them apart and adjust them to my requirements. I was even thinking about creating something similar to the Scania S dashboard, with rounded OLED displays in the middle of gauges, but that idea was too complicated and way too expensive. Finally, I decided to find a compromise between difficulty and appearance. That was my first DIY project, so I had to reckon with the fact that not everything would go my way.
 
-<InfoBlock>Detailed wiring diagrams will be attached at the end of this article.</InfoBlock>
+<InfoBlock>
+  Detailed wiring diagrams will be attached at the end of this article.
+</InfoBlock>
 
 ### Gauge cluster donor
 
 When I knew what I wanted, I started browsing offers of car cluster gauges that could be used as a donor for my project. The internal structure of this cluster was very important to me, because I wanted to subject this cluster to a series of modifications. After a few days I found the perfect candidate - **Volkswagen Golf of 4th generation**. The gauges were nice, and their arrangement was perfect for inserting between them my LCD screen. Also, I found on the Internet thousands of videos about disassembling, repairing and modding these gauge clusters. I was able to analyze the internal construction just from these videos. I calculated all the necessary dimensions just from the video and basically designed everything before making the purchase. Not only that, but I got them for a ridiculous price, (40 PLN, today's 8.75 euro) because they were damaged during disassembly. The front plastic glass was broken, but it didn’t bother me at all.
 
-<Gallery width='2'>
-![gauge donor volkswagen golf mk4](2021/images/P1010551_redark.jpg)
-![gauge donor volkswagen golf mk4](2021/images/P1010572_redark.jpg)
-![gauge donor volkswagen golf mk4](2021/images/P1010672_redark.jpg)
-![gauge donor volkswagen golf mk4](2021/images/P1010907_redark.jpg)
+<Gallery width="2">
+  ![gauge donor volkswagen golf mk4](../2021/images/P1010551_redark.jpg) ![gauge
+  donor volkswagen golf mk4](../2021/images/P1010572_redark.jpg) ![gauge donor
+  volkswagen golf mk4](../2021/images/P1010672_redark.jpg) ![gauge donor
+  volkswagen golf mk4](../2021/images/P1010907_redark.jpg)
 </Gallery>
 
-<ImageDescription>Volkswagen Golf 4th generation gauge cluster</ImageDescription>
+<ImageDescription>
+  Volkswagen Golf 4th generation gauge cluster
+</ImageDescription>
 
 From this cluster, I disassembled the original clock face, 4 red gauges, 4 stepper motors and many colorful LEDs that I grouped according to the color of light. Also, I took the plastic reflector, which I modified with a drill and a set of files. First, I had to remove this plastic piece between big gauges, because that was the place for my LCD screen. The second modification was hollowing a hole for backlight cables, because they had to go through the front of the circuit board. Speaking about the circuit board…
 
-<AdSense/>
+<AdSense />
 
 ### Replacement for the circuit board
 
 Since my knowledge of electronics is very basic, I decided to take apart the original circuit board in order to remove all unnecessary electronic parts. I had to replace it with something else. I decided to use modeling cardboard, but it turned out to be the dumbest decision I made for this project. Unfortunately, I realized this too late. Now I know, I should have designed and ordered a custom PCB, or find someone who knows how to do this. Drilling this cardboard and soldering all of these tiny wires on this soft material was horrible. That cost me a lot of broken cables and destroyed SMD LEDs. But as you can see, I finished this project. The plastic reflector lies on cardboard, on which are glued all LEDs for warning lights and backlight for clock faces and gauges. On the back of the cardboard there are four stepper motors. I attached them with small pieces of multi-layer cardboard and a couple of office paper clips. Each cable is led out to the back of cardboard, signed and bundled together. It got crowded there, but trust me, I had everything under control 😄.
 
-<Gallery width='2'>
-![removing led diodes from cluster donor](2021/images/P1010693_redark.jpg)
-![warning lights cables](2021/images/P1010991_redark.jpg)
-![gauge backlight](2021/images/P1010882_redark.jpg)
-![hooks for stepper motors](2021/images/P1010807_redark.jpg)
+<Gallery width="2">
+  ![removing led diodes from cluster donor](../2021/images/P1010693_redark.jpg)
+  ![warning lights cables](../2021/images/P1010991_redark.jpg) ![gauge
+  backlight](../2021/images/P1010882_redark.jpg) ![hooks for stepper
+  motors](../2021/images/P1010807_redark.jpg)
 </Gallery>
 
 Each of the warning LEDs received two soldered wires. The positive wires were completed with a female goldpin connector, and the negative wires were soldered together and completed again with a female connector. Later, these wires would be connected to the “LED controller”. The white backlight of clock faces has been divided into 3 LEDs for each track (15 in total). The red backlight of gauges has been divided into 2 LEDs for each track (6 in total). Soldering this backlight wasn’t easy, but this light effect was worth it.
@@ -156,11 +168,11 @@ Each of the warning LEDs received two soldered wires. The positive wires were co
 
 To easily take out cardboard from the case, I decided to reduce the number of wires that came to other peripherals. Stretching 16 positive wires of warning light to the Arduino would be tiring. To solve this problem, I used an integrated circuit called MCP23017. It’s a 16-channel GPIO expander that connects with Arduino by I2C bus. I placed this IC on the back of the cardboard. This allowed me to reduce almost 20 wires to just 4 - positive, negative, data (SDA) and clock (SCL).
 
-<Gallery width='2'>
-![testing led diodes for warning lights](2021/images/P1010747_redark.jpg)
-![led controller schema](2021/images/P1020054_redark.jpg)
-![soldering led controller](2021/images/P1020090_redark.jpg)
-![finished led controller](2021/images/P1020093_redark.jpg)
+<Gallery width="2">
+  ![testing led diodes for warning lights](../2021/images/P1010747_redark.jpg)
+  ![led controller schema](../2021/images/P1020054_redark.jpg) ![soldering led
+  controller](../2021/images/P1020090_redark.jpg) ![finished led
+  controller](../2021/images/P1020093_redark.jpg)
 </Gallery>
 
 <ImageDescription>Universal PCB with soldered LED controller</ImageDescription>
@@ -174,17 +186,17 @@ The Expander was soldered into a two-sided universal PCB. I also soldered male g
 
 Such a selection of resistors allowed me to get acceptable power of LEDs without exceeding recommended power consumption.
 
-<AdSense/>
+<AdSense />
 
 ### Backlight controller
 
 Inside the case there is a second universal PCB which contains parts whose job is to control the backlight of gauges and LCD screen.
 
-<Gallery width='2'>
-![PCB paths of backlight controller](2021/images/P1020146_redark.jpg)
-![finished backlight controller](2021/images/P1020147_redark.jpg)
-![temporary connections](2021/images/P1020165_redark.jpg)
-![first test of backlight controller](2021/images/P1020160_redark.jpg)
+<Gallery width="2">
+  ![PCB paths of backlight controller](../2021/images/P1020146_redark.jpg)
+  ![finished backlight controller](../2021/images/P1020147_redark.jpg)
+  ![temporary connections](../2021/images/P1020165_redark.jpg) ![first test of
+  backlight controller](../2021/images/P1020160_redark.jpg)
 </Gallery>
 
 <ImageDescription>The first tests of the backlight controller</ImageDescription>
@@ -208,8 +220,8 @@ The element critical to the success of this project was the LCD screen displayin
 I couldn’t use the same type of fastening as I had done with stepper motors or universal PCBs. The office paper clips couldn’t be passed through the wood, because I didn’t want to ruin the appearance of the front of the device. The clips have been bent in a U shape, so that it is held in place only by the bar holding the edges of the screen PCB. I was worried about the efficiency of these holders, but that was a great idea. The screen stays securely in its place and additionally, the LCD is independent of the main cardboard.
 
 <Gallery>
-![lcd hooks](2021/images/P1020801_redark.jpg)
-![first views of on-board computer](2021/images/P1030016_redark.jpg)
+  ![lcd hooks](../2021/images/P1020801_redark.jpg) ![first views of on-board
+  computer](../2021/images/P1030016_redark.jpg)
 </Gallery>
 
 Controlling the LCD was very hard due to the low computing power of the Arduino. I had to write a very optimal drawing code. The screen has been divided to three parts, which each has an individual refresh rate to reduce the surface that must be cleared before refreshing. The screen is not working perfectly, and you can easily see the moment when the Arduino CPU freezes, and it doesn’t move the gauges for a moment, but I did everything I could to minimize this effect.
@@ -218,33 +230,35 @@ Controlling the LCD was very hard due to the low computing power of the Arduino.
 
 And now, a few words about the wooden case. It was cut by the laser based on my design. The material is plywood with 3 millimeters of thickness. Every dimension of the case was calculated based on measurement of the original Volkswagen cluster. I copied the shape of the front holes with paper and pencil, then I scanned this to the computer and processed with Gimp and CAD applications. When the project was good enough, I ordered a plywood cut online.
 
-<Gallery width='2'>
-![designing front panel](2021/images/P1020249_redark.jpg)
-![lcd placement test](2021/images/P1020253_redark.jpg)
-![the wooden case](2021/images/P1020784_redark.jpg)
-![gluing parts of the case](2021/images/P1020826_redark.jpg)
+<Gallery width="2">
+  ![designing front panel](../2021/images/P1020249_redark.jpg) ![lcd placement
+  test](../2021/images/P1020253_redark.jpg) ![the wooden
+  case](../2021/images/P1020784_redark.jpg) ![gluing parts of the
+  case](../2021/images/P1020826_redark.jpg)
 </Gallery>
 
-<ImageDescription>Design and assembling process of the wooden case</ImageDescription>
+<ImageDescription>
+  Design and assembling process of the wooden case
+</ImageDescription>
 
 I regret ordering this thin 3 millimeter plywood, because in one place it was deformed by moisture. I should have used 5 or 6 millimeters thickness material, but it didn't matter, because the final effect was great. After I received a package with a case I had to make holes for Arduino mounting points, USB-B port, 12 V socket and backlight’s potentiometer. At the end, I glued inside the case two L shaped pieces of plywood and two wooden sticks that are going to hold the main cardboard with plastic reflector pressed to the front of the case. The strut bar and L shape holders were made from leftovers of the plywood.
 
 <Gallery>
-![front mounting bar](2021/images/P1020860_redark.jpg)
-![cardboard mounting points](2021/images/P1020858_redark.jpg)
+  ![front mounting bar](../2021/images/P1020860_redark.jpg) ![cardboard mounting
+  points](../2021/images/P1020858_redark.jpg)
 </Gallery>
 
 <ImageDescription>The main cardboard holders</ImageDescription>
 
-<AdSense/>
+<AdSense />
 
 ### Gauge clock faces
 
 An element as important as the wooden case is the clock face of the gauges. From the beginning, I wanted to create gauges adapted to the truck engine and ETS/ATS game mechanisms. I needed two things - the original clock faces of the cluster and an application that allows me to design new scales for the gauges. The first was easy. I had the original clock faces, so I scanned them, additionally illuminating them with a flashlight. That was required to make half-transparent warning light symbols more visible. With the second thing, I had a problem. I didn’t find any good-looking app that allows me to create new clock faces. What did I do? I created a new one! [The app is called “Gauge Generator”](https://github.com/adan2013/Gauge-Generator) and it is available on my GitHub account. It allows you to create from scratch new clock faces and export them to PNG files.
 
 <Gallery>
-![gauge clock faces in gimp app](2021/images/gimp_tarcze_redark.jpg)
-![my gauge generator program](2021/images/gauge_generator_redark.jpg)
+  ![gauge clock faces in gimp app](../2021/images/gimp_tarcze_redark.jpg) ![my
+  gauge generator program](../2021/images/gauge_generator_redark.jpg)
 </Gallery>
 
 <ImageDescription>The Gimp and my unique Gauge Generator app</ImageDescription>
@@ -252,20 +266,24 @@ An element as important as the wooden case is the clock face of the gauges. From
 The second step was of course to print these new faces. I had to combine a few layers of different materials to receive good results of light transmittance. I started testing multiple combinations of paper, transparent foil and tracking paper. The first versions of clock faces were printed with negative colors to reduce toner consumption. When the location of all elements seemed good, I started printing the black versions. Below, you can see the first black and glued version of gauge faces. As you can see, the warning lights looked bad, white elements were visible and layers of the right tachometer gauge shifted during the gluing process. I have been analyzing every mistake, and I fixed them in the next versions.
 
 <Gallery>
-![first version of clock faces](2021/images/1621957373814_redark.jpg)
-![first version of clock faces](2021/images/1621957373838_redark.jpg)
+  ![first version of clock faces](../2021/images/1621957373814_redark.jpg)
+  ![first version of clock faces](../2021/images/1621957373838_redark.jpg)
 </Gallery>
 
-<ImageDescription>The first black version of my custom clock faces</ImageDescription>
+<ImageDescription>
+  The first black version of my custom clock faces
+</ImageDescription>
 
 The final form has four layers of materials. Three layers of transparent foil with printed white (actually transparent) warning lights, and the top layer of tracking paper without warning lights. This combination of layers allows me to receive a good contrast of warning light, similar to the original clock faces. Also, I added to the project a few crosses that made the gluing process easier. I glued the layers on the glass table illuminated by a powerful flashlight. I have used spray glue, but it left small droplets on the surface of the foil. After every gluing, I had to cover layers with a clear sheet of paper, and squeeze out the air trapped between layers using a plastic card. At the end, I covered the whole thing with a pile of books for one night.
 
 <Gallery>
-![gluing layers](2021/images/1621957373766_redark.jpg)
-![backlighted clock faces](2021/images/1621957373744_redark.jpg)
+  ![gluing layers](../2021/images/1621957373766_redark.jpg) ![backlighted clock
+  faces](../2021/images/1621957373744_redark.jpg)
 </Gallery>
 
-<ImageDescription>Gluing process on the illuminated glass table</ImageDescription>
+<ImageDescription>
+  Gluing process on the illuminated glass table
+</ImageDescription>
 
 Creating these clock faces was a huge challenge, but I think the final look was worth it. It looks beautiful, and they are a hundred times better than the car version with the wrong scale of values. Even half a day of taking apart my laser printer (which broke down during printing) was worth it 😂.
 
@@ -281,7 +299,7 @@ For DIY projects, many users want to know what the final cost of the whole proje
 
 As you can see, the final cost of the project is between 300 and 350 PLN. For me, it is a good price for such an advanced project. Other projects, which I found on the Internet, didn't look as good as this one.
 
-<AdSense/>
+<AdSense />
 
 ### Wiring diagrams
 
@@ -289,7 +307,9 @@ As I promised, below you call see the complete wiring diagram of my project. If 
 
 ![wiring diagrams](../2021/images/schema_diy_arduino_dashboard.jpg)
 
-<ImageDescription>Complete wiring diagram of the DIY Arduino Dashboard project</ImageDescription>
+<ImageDescription>
+  Complete wiring diagram of the DIY Arduino Dashboard project
+</ImageDescription>
 
 ### My opinion
 
@@ -299,7 +319,9 @@ First, I’m glad that I was able to complete this project. That was my first pr
 
 Now, It is time to open source. The complete code of the telemetry interpreter, Arduino code, files with graphics, gauge clock faces - everything, what I created for this project, I placed in a public GitHub repository.
 
-<ActionButton to='https://github.com/adan2013/DIY-Arduino-Dashboard'>Go to GitHub</ActionButton>
+<ActionButton to="https://github.com/adan2013/DIY-Arduino-Dashboard">
+  Go to GitHub
+</ActionButton>
 
 ### Feature projects
 

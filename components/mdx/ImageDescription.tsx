@@ -6,7 +6,7 @@ interface ImageDescriptionProps {
 
 export function ImageDescription({ children }: ImageDescriptionProps) {
   return (
-    <div className="block text-center text-xs italic my-2 mx-auto mb-4 max-w-[450px]">
+    <div className="block text-center text-xs italic mx-auto mb-4 max-w-[450px]">
       {children}
     </div>
   );

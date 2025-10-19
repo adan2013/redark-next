@@ -6,6 +6,7 @@ import PostGrid from "@/components/PostGrid";
 import Pagination from "@/components/Pagination";
 import slugify from "slugify";
 import postConfig from "@/lib/post-config.json";
+import { generatePageTitle, generatePageDescription } from "@/lib/seo";
 
 interface TagPageProps {
   params: Promise<{ tag: string; page?: string[] }>;
@@ -46,14 +47,18 @@ export async function generateMetadata({
 
   if (pageNum === 1) {
     return {
-      title: `#${tagName} - Redark.pl`,
-      description: `Artykuły z tagiem ${tagName} na Redark.pl`,
+      title: generatePageTitle(`#${tagName}`),
+      description: generatePageDescription(
+        `Artykuły z tagiem ${tagName} na Redark.pl`
+      ),
     };
   }
 
   return {
-    title: `#${tagName} - Strona ${pageNum} - Redark.pl`,
-    description: `Artykuły z tagiem ${tagName} - strona ${pageNum}`,
+    title: generatePageTitle(`#${tagName} - Strona ${pageNum}`),
+    description: generatePageDescription(
+      `Artykuły z tagiem ${tagName} - strona ${pageNum}`
+    ),
   };
 }
 
